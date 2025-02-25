@@ -1,5 +1,3 @@
-// ProductInfoScreen.js
-
 import React from 'react';
 import { View, Text, Image, StyleSheet } from 'react-native';
 
@@ -24,15 +22,59 @@ const RefaccionInfoScreen = ({ route }) => {
 };
 
 const styles = StyleSheet.create({
-  container: { flex: 1, padding: 20,backgroundColor: 'white' },
-  image: { width: '100%', height: 200, resizeMode: 'contain' },
-  barcodeImage: { width: '100%', height: 100, resizeMode: 'contain', marginTop: 20 },
-  name: { fontSize: 24, fontWeight: 'bold', marginTop: 10 },
-  description: { fontSize: 16, marginTop: 10 },
-  code: { fontSize: 16, marginTop: 10, color: 'black' },
-  stock: { fontSize: 16, marginTop: 10, color: 'black' },
-  barcodeLabel: { fontSize: 16, marginTop: 10, color: 'black' },
-  noBarcodeText: { fontSize: 16, marginTop: 10, color: 'red' },
+  container: { 
+    flex: 1, 
+    justifyContent: 'center', 
+    alignItems: 'center', 
+    padding: 20,
+    backgroundColor: 'white' 
+  },
+  image: { 
+    width: '100%', 
+    height: 300, 
+    resizeMode: 'cover' 
+  },
+  barcodeImage: { 
+    width: '100%', 
+    height: 150, 
+    resizeMode: 'cover', 
+    marginTop: 20 
+  },
+  name: { 
+    fontSize: 24, 
+    fontWeight: 'bold', 
+    marginTop: 10, 
+    textAlign: 'center' 
+  },
+  description: { 
+    fontSize: 16, 
+    marginTop: 10, 
+    textAlign: 'center' 
+  },
+  code: { 
+    fontSize: 16, 
+    marginTop: 10, 
+    color: 'black', 
+    textAlign: 'center' 
+  },
+  stock: { 
+    fontSize: 16, 
+    marginTop: 10, 
+    color: 'black', 
+    textAlign: 'center' 
+  },
+  barcodeLabel: { 
+    fontSize: 16, 
+    marginTop: 10, 
+    color: 'black', 
+    textAlign: 'center' 
+  },
+  noBarcodeText: { 
+    fontSize: 16, 
+    marginTop: 10, 
+    color: 'red', 
+    textAlign: 'center' 
+  },
 });
 
 export default RefaccionInfoScreen;

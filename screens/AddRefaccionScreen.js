@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { View, TextInput, Text, TouchableOpacity, StyleSheet } from 'react-native';
 import { Picker } from '@react-native-picker/picker';
 import axios from 'axios';
-import { launchImageLibrary, launchCamera } from 'react-native-image-picker';
+import { launchImageLibrary } from 'react-native-image-picker';
 
 const AddRefaccionScreen = () => {
   const [nombre, setNombre] = useState('');
@@ -32,8 +32,8 @@ const AddRefaccionScreen = () => {
     });
   };
 
-  const tomarFoto = () => {
-    launchCamera({ mediaType: 'photo' }, (response) => {
+  const seleccionarCodigoBarras = () => {
+    launchImageLibrary({ mediaType: 'photo' }, (response) => {
       if (response.assets) {
         setCodigoBarras(response.assets[0].uri);
       }
@@ -51,7 +51,7 @@ const AddRefaccionScreen = () => {
     formData.append('categoria_id', categoriaId);
 
     try {
-      const response = await axios.post('http://192.168.137.78/refaccionesNew.php', formData, {
+      const response = await axios.post('http://192.168.175.10/refaccionesNew.php', formData, {
         headers: { 'Content-Type': 'multipart/form-data' },
       });
       console.log(response.data);
@@ -73,8 +73,8 @@ const AddRefaccionScreen = () => {
       <Text style={styles.label}>Descripción:</Text>
       <TextInput value={descripcion} onChangeText={setDescripcion} style={styles.input} />
       <Text style={styles.label}>Código de Barras:</Text>
-      <TouchableOpacity onPress={tomarFoto} style={styles.button}>
-        <Text style={styles.buttonText}>{codigoBarras ? 'Código de barras tomado' : 'Tomar foto'}</Text>
+      <TouchableOpacity onPress={seleccionarCodigoBarras} style={styles.button}>
+        <Text style={styles.buttonText}>{codigoBarras ? 'Código de barras seleccionado' : 'Seleccionar Código de Barras'}</Text>
       </TouchableOpacity>
       <Text style={styles.label}>Categoría:</Text>
       <View style={styles.pickerContainer}>
@@ -138,8 +138,8 @@ const styles = StyleSheet.create({
     paddingHorizontal: 20,
     alignItems: 'center',
     borderRadius: 5,
-    width: '50%', // Hacemos el botón más pequeño en términos de ancho
-    alignSelf: 'center', // Centrar el botón
+    width: '50%',
+    alignSelf: 'center',
   },
   smallButtonText: {
     color: '#fff',
