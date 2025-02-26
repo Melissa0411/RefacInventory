@@ -8,7 +8,10 @@ const RefaccionesScreen = ({ navigation }) => {
 
   useEffect(() => {
     axios.get('http://192.168.175.10/getCategories.php')
-      .then(response => setCategories(response.data.categories))
+      .then(response => {
+        const sortedCategories = response.data.categories.sort((a, b) => a.nombre_categoria.localeCompare(b.nombre_categoria));
+        setCategories(sortedCategories);
+      })
       .catch(error => console.error(error));
   }, []);
 

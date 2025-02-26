@@ -8,10 +8,11 @@ import HomeScreen from './screens/HomeScreen';
 import ForgotPasswordScreen from './screens/ForgotPasswordScreen';
 import AddRefaccionScreen from './screens/AddRefaccionScreen';
 import RefaccionInfoScreen from './screens/RefaccionInfoScreen';
-import ReportesScreen from './screens/ReportesScreen';
 import EntradasSalidasScreen from './screens/EntradasSalidasScreen';
 import RefacDetailsScreen from './screens/RefacDetailsScreen';
 import RefaccionesScreen from './screens/RefaccionesScreen';
+import CategoryScreen from './screens/CategoryScreen';
+
 
 // Habilitar react-native-screens
 import { enableScreens } from 'react-native-screens';
@@ -60,8 +61,8 @@ function HomeTabs() {
         }} 
       />
       <Tab.Screen 
-        name="Reportes" 
-        component={ReportesScreen} 
+        name="Añadir Categoria" 
+        component={CategoryScreen} 
         options={{ 
           tabBarIcon: ({ color, size }) => (
             <Icon name="file-text" color={color} size={size} />
@@ -82,6 +83,7 @@ const App = () => {
         <Stack.Screen name="RefacDetailsScreen" component={RefacDetailsScreen} />
         <Stack.Screen name="Añadir Nueva Refacción" component={AddRefaccionScreen} />
         <Stack.Screen name="RefaccionInfo" component={RefaccionInfoScreen} /> 
+        <Stack.Screen name="Category" component={CategoryScreen}/>
       </Stack.Navigator>
     </NavigationContainer>
   );
