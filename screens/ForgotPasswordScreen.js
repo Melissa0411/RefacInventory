@@ -1,16 +1,15 @@
 import React, { useState } from 'react';
-import { View, Text, TextInput, Button, StyleSheet, ImageBackground } from 'react-native';
+import { View, Text, TextInput, Alert, StyleSheet, ImageBackground, TouchableOpacity } from 'react-native';
 
 const ForgotPasswordScreen = ({ navigation }) => {
   const [emailOrUsername, setEmailOrUsername] = useState('');
 
   const handlePasswordRecovery = () => {
     if (emailOrUsername) {
-      // Aquí puedes hacer una solicitud al servidor para recuperar la contraseña
-      alert("Se ha enviado un correo para recuperar tu contraseña.");
-      navigation.goBack(); // Volver a la pantalla de login
+      Alert.alert("Éxito", "Se ha enviado un correo para recuperar tu contraseña.");
+      navigation.goBack();
     } else {
-      alert("Por favor, ingresa un correo electrónico o nombre de usuario.");
+      Alert.alert("Error", "Por favor, ingresa un correo electrónico o nombre de usuario.");
     }
   };
 
@@ -21,39 +20,49 @@ const ForgotPasswordScreen = ({ navigation }) => {
         style={styles.image}
       />
       <Text style={styles.title}>Recuperar Contraseña</Text>
-      <TextInput
-        style={[styles.input, { borderColor: '#ff8c69' }]} // Usar el mismo borde color #ff8c69
-        placeholder="Correo electrónico o usuario"
-        value={emailOrUsername}
-        onChangeText={setEmailOrUsername}
-      />
-      <Button title="Enviar" onPress={handlePasswordRecovery} color="#ff8c69" />
-      <View style={styles.buttonSpacing}>
-        <Button 
-          title="Regresar" 
-          onPress={() => navigation.navigate("Login")} // Regresa a la pantalla de Login
-          color="#ff8c69"
+      <View style={styles.inputContainer}>
+        <Text>📧</Text>
+        <TextInput 
+          style={styles.input} 
+          placeholder="Correo electrónico o usuario"
+          value={emailOrUsername}
+          onChangeText={setEmailOrUsername}
         />
       </View>
+      
+      <TouchableOpacity style={styles.button} onPress={handlePasswordRecovery}>
+        <Text style={styles.buttonText}>📩 Enviar</Text>
+      </TouchableOpacity>
+      
+      <TouchableOpacity style={styles.buttonSecondary} onPress={() => navigation.navigate("Login")}>
+        <Text style={styles.buttonText}>🔙 Regresar</Text>
+      </TouchableOpacity>
     </View>
   );
 };
 
 const styles = StyleSheet.create({
   container: { flex: 1, justifyContent: "center", alignItems: "center", padding: 50, backgroundColor: 'white' },
-  image: { width: 350, height: 160, marginBottom: 30 }, // Tamaño de la imagen igual al login
+  image: { width: 350, height: 160, marginBottom: 30 },
   title: { fontSize: 24, textAlign: "center", marginBottom: 30 },
-  input: { 
-    borderWidth: 1,  // Borde igual al login
-    padding: 5,      // Igual relleno
-    marginBottom: 10, 
-    borderRadius: 10, // Igual radio de borde
-    fontSize: 18,     // Igual tamaño de texto
-    width: '120%'      // Igual ancho de los inputs
+  inputContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    borderWidth: 1,
+    borderColor: '#ff8c69',
+    borderRadius: 10,
+    paddingHorizontal: 10,
+    marginBottom: 10,
+    width: '120%'
   },
-  buttonSpacing: {
-    marginTop: 5 // Agrega espacio entre los botones, igual que en la vista de login
-  }
+  input: { 
+    flex: 1,
+    padding: 10, 
+    fontSize: 18
+  },
+  button: { backgroundColor: '#ff8c69', padding: 15, marginVertical: 10, borderRadius: 5, width: '120%', alignItems: 'center' },
+  buttonSecondary: { backgroundColor: '#ddd', padding: 15, marginVertical: 5, borderRadius: 5, width: '120%', alignItems: 'center' },
+  buttonText: { color: 'white', fontSize: 16, fontWeight: 'bold' },
 });
 
 export default ForgotPasswordScreen;

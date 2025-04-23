@@ -25,16 +25,16 @@ const CategoryScreen = () => {
       Alert.alert('Error', 'Todos los campos son obligatorios');
       return;
     }
-
+  
     const formData = new FormData();
     formData.append('nombre_categoria', nombreCategoria);
     formData.append('imagen', {
       uri: imagenUri.uri,
       type: 'image/jpeg',
-      name: 'category.jpg',
+      name: imagenUri.fileName || 'image.jpg', // Usa el nombre original de la imagen
     });
-
-    axios.post('http://192.168.175.10/addCategory.php', formData, {
+  
+    axios.post('http://192.168.251.10/addCategory.php', formData, {
       headers: { 'Content-Type': 'multipart/form-data' },
     })
       .then(response => {
@@ -43,7 +43,7 @@ const CategoryScreen = () => {
           setNombreCategoria('');
           setImagenUri(null);
         } else {
-          Alert.alert('Error', response.data.message);
+          Alert.alert('Error, la categoria ya existe!', response.data.message);
         }
       })
       .catch(error => {
@@ -51,15 +51,14 @@ const CategoryScreen = () => {
         Alert.alert('Error', 'Ocurrió un error al agregar la categoría');
       });
   };
-
+  
   return (
     <View style={styles.container}>
-      <Text style={styles.label}>Nombre de la Categoría:</Text>
-      <TextInput
+<Text style={styles.label}>Nombre de la Categoría:</Text>
+<TextInput
         style={styles.input}
         value={nombreCategoria}
         onChangeText={setNombreCategoria}
-        placeholder="Ingrese el nombre de la categoría"
       />
       <TouchableOpacity style={styles.button} onPress={handleChoosePhoto}>
         <Text style={styles.buttonText}>Seleccionar Imagen</Text>
@@ -68,7 +67,7 @@ const CategoryScreen = () => {
         <Image source={{ uri: imagenUri.uri }} style={styles.image} />
       )}
       <TouchableOpacity style={styles.addButton} onPress={handleSubmit}>
-        <Text style={styles.addButtonText}>Agregar Categoría</Text>
+        <Text style={styles.addButtonText}>Añadir Categoría</Text>
       </TouchableOpacity>
     </View>
   );
@@ -76,12 +75,17 @@ const CategoryScreen = () => {
 
 const styles = StyleSheet.create({
   container: { flex: 1, padding: 20, backgroundColor: 'white' },
-  label: { fontSize: 16, marginVertical: 10 },
+  label: {
+    fontSize: 16,
+    marginVertical: 10,
+    fontWeight: 'bold', // Texto en negritas
+  },
   input: { borderWidth: 1, borderColor: '#ff8c69', padding: 10, borderRadius: 5 },
   button: { backgroundColor: '#ff8c69', padding: 10, borderRadius: 5, marginVertical: 10 },
-  buttonText: { color: 'white', textAlign: 'center' },
+  buttonText: { color: 'white', textAlign: 'center', },
   image: { width: 200, height: 200, resizeMode: 'cover', alignSelf: 'center', marginVertical: 10 },
-  addButton: { backgroundColor: '#ff8c69', padding: 8, borderRadius: 5, marginVertical: 10, alignSelf: 'center', width: 150 },  addButtonText: { color: 'white', textAlign: 'center' },
+  addButton: { backgroundColor: '#ff8c69', padding: 8, borderRadius: 5, marginVertical: 10, alignSelf: 'center', width: 150 },  
+  addButtonText: { color: 'white', textAlign: 'center' },
 });
 
 export default CategoryScreen;
