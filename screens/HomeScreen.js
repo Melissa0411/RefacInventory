@@ -106,18 +106,12 @@ const HomeScreen = ({ navigation }) => {
         })()}
 
         <TouchableOpacity
-          style={styles.buttonEntrada}
-          onPress={() => navigation.navigate('ReportesEntradas')}
-        >
-          <Text style={styles.buttonText}>📥 Ver Reportes de Entradas</Text>
-        </TouchableOpacity>
+  style={styles.buttonSalida}
+  onPress={() => navigation.navigate('Vehiculos')}
+>
+  <Text style={styles.buttonText}>🚗 Ver Vehiculos</Text>
+</TouchableOpacity>
 
-        <TouchableOpacity
-          style={styles.buttonSalida}
-          onPress={() => navigation.navigate('ReportesSalidas')}
-        >
-          <Text style={styles.buttonText}>📤 Ver Reportes de Salidas</Text>
-        </TouchableOpacity>
 
       </View>
     </ScrollView>
@@ -129,7 +123,7 @@ const styles = StyleSheet.create({
   chartTitle: { fontSize: 18, fontWeight: 'bold', marginTop: 20, marginBottom: 10 },
   chart: { borderRadius: 8, alignSelf: 'center' }, // 🔥 Centra la gráfica
   buttonEntrada: { backgroundColor: '#ff8c69', padding: 15, marginVertical: 10, borderRadius: 5, width: '80%', alignItems: 'center' },
-  buttonSalida: { backgroundColor: '#ff6347', padding: 15, marginVertical: 10, borderRadius: 5, width: '80%', alignItems: 'center' },
+  buttonSalida: { backgroundColor: '#ff8c69', padding: 15, marginVertical: 10, borderRadius: 5, width: '80%', alignItems: 'center' },
   buttonText: { color: 'white', fontSize: 16, fontWeight: 'bold' },
 });
 

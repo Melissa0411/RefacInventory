@@ -19,6 +19,7 @@ import ReportesSalidasScreen from './screens/ReportesSalidasScreen';
 import ScannerScreen from './screens/ScannerScreen';
 
 import { enableScreens } from 'react-native-screens';
+import VehiculosScreen from './screens/VehiculosScreen';
 enableScreens();
 
 const Stack = createStackNavigator();
@@ -173,6 +174,8 @@ const App = () => {
         <Stack.Screen name="Reportes" component={ReportesScreen} options={{ title: 'Reportes' }} />
         <Stack.Screen name="ReportesEntradas" component={ReportesEntradasScreen} />
         <Stack.Screen name="ReportesSalidas" component={ReportesSalidasScreen} />
+        <Stack.Screen name="Vehiculos" component={VehiculosScreen} />
+
 
         <Stack.Screen name="ScannerScreen" component={ScannerScreen} options={{ headerShown: false }} />
       </Stack.Navigator>

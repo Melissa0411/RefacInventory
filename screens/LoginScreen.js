@@ -63,9 +63,7 @@ const LoginScreen = ({ navigation }) => {
         <Text style={styles.buttonText}>🔑 Iniciar Sesión</Text>
       </TouchableOpacity>
       
-      <TouchableOpacity style={styles.buttonSecondary} onPress={handlePasswordRecovery}>
-        <Text style={styles.buttonText}>❓ ¿Olvidaste tu contraseña?</Text>
-      </TouchableOpacity>
+      
     </View>
   );
 };
